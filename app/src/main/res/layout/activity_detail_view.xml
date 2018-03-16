@@ -35,25 +35,27 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/address" />
 
-    <Spinner
-        android:id="@+id/business"
+    <EditText
+        android:id="@+id/job"
         android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:hint="Business Type"
         android:entries="@array/Type_Business"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/number" />
 
-    <Spinner
+    <EditText
         android:id="@+id/province"
         android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:hint="Province"
+        android:layout_height="44dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:entries="@array/Province"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/business" />
+        app:layout_constraintTop_toBottomOf="@+id/job" />
 
     <Button
         android:id="@+id/updateButton"
@@ -64,7 +66,7 @@
         android:onClick="updateBusiness"
         android:text="Update Data"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address" />
+        app:layout_constraintTop_toBottomOf="@+id/province" />
 
     <Button
         android:id="@+id/deleteButton"
@@ -75,7 +77,7 @@
         android:onClick="eraseBusiness"
         android:text="Erase Business"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address"/>
+        app:layout_constraintTop_toBottomOf="@+id/province"/>
 
 
 

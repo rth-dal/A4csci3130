@@ -3,35 +3,40 @@ package com.acme.a3csci3130;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class DetailViewActivity extends Activity {
 
-    private EditText nameField, numberField, addressField;
-    private Spinner businessField, provinceField;
+    private EditText nameField, numberField, addressField, jobField, provinceField;
     Business receivedPersonInfo;
     private MyApplicationData appState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view);
         receivedPersonInfo = (Business)getIntent().getSerializableExtra("Contact");
 
+        MyApplicationData appData = (MyApplicationData)getApplication();
+        appState = ((MyApplicationData) getApplicationContext());
+
+        appData.firebaseDBInstance = FirebaseDatabase.getInstance();
+        appData.firebaseReference = appData.firebaseDBInstance.getReference("Businesses");
+
         nameField = (EditText) findViewById(R.id.name);
         numberField = (EditText) findViewById(R.id.number);
         addressField = (EditText) findViewById(R.id.address);
-        provinceField = (Spinner) findViewById(R.id.province);
-        businessField = (Spinner) findViewById(R.id.business);
+        provinceField = (EditText) findViewById(R.id.province);
+        jobField = (EditText) findViewById(R.id.job);
 
         if(receivedPersonInfo != null){
             nameField.setText(receivedPersonInfo.name);
             numberField.setText(receivedPersonInfo.number);
             addressField.setText(receivedPersonInfo.address);
-            provinceField.setSelection(getIndex(provinceField, receivedPersonInfo.province));
-            businessField.setSelection(getIndex(businessField, receivedPersonInfo.business));
+            provinceField.setText(receivedPersonInfo.province);
+            jobField.setText(receivedPersonInfo.job);
         }
     }
 
@@ -40,18 +45,17 @@ public class DetailViewActivity extends Activity {
      */
     public void updateBusiness(View v) {
         //TODO: Update contact functionality
-        appState = ((MyApplicationData) getApplicationContext());
 
         String name = nameField.getText().toString();
         String number = numberField.getText().toString();
         String address = addressField.getText().toString();
-        String business= businessField.getSelectedItem().toString();
-        String province = provinceField.getSelectedItem().toString();
+        String job= jobField.getText().toString();
+        String province = provinceField.getText().toString();
 
 
-        Business company = new Business(receivedPersonInfo.id, name, number, province, address, business);
 
-        appState.firebaseReference.child(receivedPersonInfo.id).setValue(company);
+
+        appState.firebaseReference.child(receivedPersonInfo.id).setValue(receivedPersonInfo);
 
         finish();
 
@@ -64,27 +68,9 @@ public class DetailViewActivity extends Activity {
      */
     public void eraseBusiness(View v) {
         //TODO: Erase contact functionality
-
-        appState = ((MyApplicationData) getApplicationContext());
         appState.firebaseReference.child(receivedPersonInfo.id).removeValue();
 
         finish();
 
-    }
-
-    /**
-     * This function gets the index of a Spinner for a given string.
-     */
-    public int getIndex(Spinner spinner, String myString)
-    {
-        int index = 0;
-
-        for (int i=0;i<spinner.getCount();i++){
-            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
-                index = i;
-                break;
-            }
-        }
-        return index;
     }
 }

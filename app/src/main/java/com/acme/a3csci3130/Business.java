@@ -19,19 +19,19 @@ public class Business implements Serializable {
     public  String number;
     public  String province;
     public  String address;
-    public  String business;
+    public  String job;
 
     public Business() {
         // Default constructor required for calls to DataSnapshot.getValue
     }
 
-    public Business(String id, String name, String number, String province, String address, String business){
+    public Business(String id, String name, String number, String province, String address, String job){
         this.id = id;
         this.name = name;
         this.number = number;
         this.province = province;
         this.address = address;
-        this.business = business;
+        this.job = job;
     }
 
     @Exclude
@@ -42,7 +42,8 @@ public class Business implements Serializable {
         result.put("number", number);
         result.put("province", province);
         result.put("address", address);
-        result.put("business", business);
+        result.put("job", job);
         return result;
     }
+
 }

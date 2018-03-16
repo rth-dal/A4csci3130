@@ -12,7 +12,7 @@
     </string-array>
 
     <string-array name="Province">
-        <item>""</item>
+        <item>"Province"</item>
         <item>"AB"</item>
         <item>"BC"</item>
         <item>"MB"</item>

@@ -37,7 +37,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:hint="address" />
 
-    <Spinner
+    <EditText
         android:id="@+id/province"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/address"
         android:hint="Province"/>
 
-    <Spinner
+    <EditText
         android:id="@+id/job"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
@@ -66,7 +66,6 @@
         android:layout_marginTop="40dp"
         android:onClick="submitInfoButton"
         android:text="Create Business"
-
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
